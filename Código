@@ -1,0 +1,56 @@
+int LR1 = 1;
+int LA1 = 2;
+int LV1 = 3;
+int LR2 = 9;
+int LV2 = 10;
+int LB1 = 4;
+int PULS = 6;
+int estado;
+
+void setup() {
+  pinMode(LR1, OUTPUT);
+  pinMode(LA1, OUTPUT);
+  pinMode(LV1, OUTPUT);
+  pinMode(LB1, OUTPUT);
+  pinMode(LR2, OUTPUT);
+  pinMode(LV2, OUTPUT);
+  pinMode(PULS, INPUT);
+}
+
+void loop() {
+  estado = digitalRead(PULS);
+  if (estado == HIGH) {
+    digitalWrite(LB1, HIGH);
+    delay(500);
+    digitalWrite(LB1, LOW);
+    digitalWrite(LR1, LOW);
+    digitalWrite(LA1, HIGH);
+    digitalWrite(LV1, LOW);
+    digitalWrite(LR2, HIGH);
+    digitalWrite(LV2, LOW);
+    delay(2000);
+    
+    digitalWrite(LR1, HIGH);
+    digitalWrite(LA1, LOW);
+    digitalWrite(LR2, LOW);
+    digitalWrite(LV2, HIGH);
+    delay(3000);
+    
+    digitalWrite(LV2, LOW); // Added missing semicolon
+    delay(500); 
+    digitalWrite(LV2, HIGH); // Added missing semicolon
+    delay(500); 
+    digitalWrite(LV2, LOW); // Added missing semicolon
+    delay(500);
+    digitalWrite(LV2, HIGH); // Added missing semicolon
+    delay(500);
+    digitalWrite(LV2, LOW); // Added missing semicolon
+    delay(500);
+  } else {
+    digitalWrite(LR1, LOW);
+    digitalWrite(LA1, LOW);
+    digitalWrite(LV1, HIGH);
+    digitalWrite(LR2, HIGH);
+    digitalWrite(LV2, LOW);
+  }
+}
